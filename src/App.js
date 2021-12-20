@@ -10,6 +10,7 @@ import { createStore } from "redux";
 // initial state
 const initialState = {
   count: 3,
+  name: "john",
 };
 
 // reducer - function that used to update state
@@ -21,11 +22,13 @@ const initialState = {
 const reducer = (state, action) => {
   console.log({ state, action });
   if (action.type === "DECREMENT") {
-    return { count: state.count - 1 };
+    return { ...state, count: state.count - 1 };
   } else if (action.type === "INCREMENT") {
-    return { count: state.count + 1 };
+    return { ...state, count: state.count + 1 };
   } else if (action.type === "RESET") {
-    return { count: 0 };
+    return { ...state, count: 0 };
+  } else if (action.type === "CHANGE_NAME") {
+    return { ...state, name: "jenny" };
   }
   return state;
 };
@@ -33,8 +36,10 @@ const reducer = (state, action) => {
 // store - store data, think of state
 const store = createStore(reducer, initialState);
 store.dispatch({ type: "DECREMENT" });
-store.dispatch({ type: "INCREMENT" });
 store.dispatch({ type: "RESET" });
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "CHANGE_NAME" });
+console.log(store.getState());
 
 function App() {
   // cart setup

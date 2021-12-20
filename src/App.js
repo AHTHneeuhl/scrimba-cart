@@ -10,6 +10,9 @@ import { INCREMENT, DECREMENT } from "./store/actions";
 import { createStore } from "redux";
 import reducer from "./store/reducer";
 
+// react-redux - Provider - wraps app, connect - used in components
+import { Provider } from "react-redux";
+
 // initial state
 const initialState = {
   cart: cartItems,
@@ -24,10 +27,10 @@ function App() {
   // cart setup
 
   return (
-    <main>
+    <Provider store={store}>
       <Navbar />
       <CartContainer cart={cartItems} />
-    </main>
+    </Provider>
   );
 }
 

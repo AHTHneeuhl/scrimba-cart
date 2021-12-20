@@ -7,7 +7,6 @@ import { INCREMENT, DECREMENT } from "./actions";
 // return previous state or updated state
 // DON'T MUTATE the STATE - redux built on immutability
 const reducer = (state, action) => {
-  console.log({ state, action });
   if (action.type === DECREMENT) {
     return { ...state, count: state.count - 1 };
   } else if (action.type === INCREMENT) {

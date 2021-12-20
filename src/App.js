@@ -12,22 +12,20 @@ import reducer from "./store/reducer";
 
 // initial state
 const initialState = {
-  count: 3,
-  name: "john",
+  cart: cartItems,
+  total: 0,
+  amount: 0,
 };
 
 // store - store data, think of state
 const store = createStore(reducer, initialState);
-store.dispatch({ type: DECREMENT });
-store.dispatch({ type: INCREMENT });
-console.log(store.getState());
 
 function App() {
   // cart setup
 
   return (
     <main>
-      <Navbar cart={store.getState()} />
+      <Navbar />
       <CartContainer cart={cartItems} />
     </main>
   );

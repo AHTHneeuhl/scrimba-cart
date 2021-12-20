@@ -9,7 +9,7 @@ import { createStore } from "redux";
 
 // initial state
 const initialState = {
-  count: 0,
+  count: 3,
 };
 
 // reducer - function that used to update state
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <main>
-      <Navbar />
+      <Navbar cart={store.getState()} />
       <CartContainer cart={cartItems} />
     </main>
   );

@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import CartContainer from "./components/CartContainer";
 // items
 import cartItems from "./cart-items";
+// action variables
+import { INCREMENT, DECREMENT } from "./actions";
 
 // redux stuff
 import { createStore } from "redux";
@@ -21,24 +23,18 @@ const initialState = {
 // DON'T MUTATE the STATE - redux built on immutability
 const reducer = (state, action) => {
   console.log({ state, action });
-  if (action.type === "DECREMENT") {
+  if (action.type === DECREMENT) {
     return { ...state, count: state.count - 1 };
-  } else if (action.type === "INCREMENT") {
+  } else if (action.type === INCREMENT) {
     return { ...state, count: state.count + 1 };
-  } else if (action.type === "RESET") {
-    return { ...state, count: 0 };
-  } else if (action.type === "CHANGE_NAME") {
-    return { ...state, name: "jenny" };
   }
   return state;
 };
 
 // store - store data, think of state
 const store = createStore(reducer, initialState);
-store.dispatch({ type: "DECREMENT" });
-store.dispatch({ type: "RESET" });
-store.dispatch({ type: "INCREMENT" });
-store.dispatch({ type: "CHANGE_NAME" });
+store.dispatch({ type: DECREMENT });
+store.dispatch({ type: INCREMENT });
 console.log(store.getState());
 
 function App() {

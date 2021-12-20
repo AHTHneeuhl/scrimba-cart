@@ -17,13 +17,18 @@ const initialState = {
 // state - previous state
 // action - what state to update
 // return previous state or updated state
+// DON'T MUTATE the STATE - redux built on immutability
 const reducer = (state, action) => {
   console.log({ state, action });
+  if (action.type === "DECREMENT") {
+    return { count: state.count - 1 };
+  }
   return state;
 };
 
 // store - store data, think of state
 const store = createStore(reducer, initialState);
+store.dispatch({ type: "DECREMENT" });
 
 function App() {
   // cart setup

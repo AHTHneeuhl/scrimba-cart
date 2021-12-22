@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, CLEAR_CART } from "./actions";
+import { INCREMENT, DECREMENT, CLEAR_CART, REMOVE } from "./actions";
 
 // reducer - function that used to update state
 // take two parameters - state, action
@@ -9,11 +9,12 @@ import { INCREMENT, DECREMENT, CLEAR_CART } from "./actions";
 const reducer = (state, action) => {
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
-  }
-  if (action.type === DECREMENT) {
-    return { ...state, count: state.count - 1 };
+  } else if (action.type === DECREMENT) {
+    console.log("you decremented amount");
   } else if (action.type === INCREMENT) {
-    return { ...state, count: state.count + 1 };
+    console.log("you incremented amount");
+  } else if (action.type === REMOVE) {
+    console.log("you remove amount");
   }
   return state;
 };

@@ -12,7 +12,13 @@ const reducer = (state, action) => {
   } else if (action.type === DECREMENT) {
     console.log("you decremented amount");
   } else if (action.type === INCREMENT) {
-    console.log("you incremented amount");
+    let tempCart = state.cart.map((item) => {
+      if (item.id === action.payload.id) {
+        item = { ...item, amount: item.amount + 1 };
+      }
+      return item;
+    });
+    return { ...state, cart: tempCart };
   } else if (action.type === REMOVE) {
     return {
       ...state,

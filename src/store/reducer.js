@@ -1,4 +1,10 @@
-import { INCREMENT, DECREMENT, CLEAR_CART, REMOVE } from "./actions";
+import {
+  INCREMENT,
+  DECREMENT,
+  CLEAR_CART,
+  REMOVE,
+  GET_TOTALS,
+} from "./actions";
 
 // reducer - function that used to update state
 // take two parameters - state, action
@@ -37,6 +43,21 @@ const reducer = (state, action) => {
       ...state,
       cart: state.cart.filter((item) => item.id !== action.payload.id),
     };
+  } else if (action.type === GET_TOTALS) {
+    let { total, amount } = state.cart.reduce(
+      (cartTotal, cartItem) => {
+        const { price, amount } = cartItem;
+        const itemTotal = price * amount;
+        cartTotal.total += itemTotal;
+        cartTotal.amount += amount;
+        return cartTotal;
+      },
+      {
+        total: 0,
+        amount: 0,
+      }
+    );
+    return { ...state, total, amount };
   }
   return state;
 };
